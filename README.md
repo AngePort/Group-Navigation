@@ -4,10 +4,19 @@ This is a minimal Python (Flask + SQLAlchemy) prototype for a Driving Navigation
 
 What you get
 - Flask application factory in `app.py`
-- SQLAlchemy setup in `db.py`
-- `UserProfile` model in `models.py`
-- CRUD endpoints in `routes.py` for user profiles
+- SQLite database setup in `db.py`
+- User profiles table and CRUD operations in `routes.py`
+- Interactive map using Folium and OpenStreetMap
 - Simple pytest tests in `tests/test_profiles.py`
+
+API endpoints
+- `GET /` - Health check
+- `POST /profiles/` - Create profile (json: username, email, full_name?, vehicle_type?, latitude?, longitude?)
+- `GET /profiles/` - List all profiles
+- `GET /profiles/<id>` - Get profile by ID
+- `PUT /profiles/<id>` - Update profile (json: full_name?, vehicle_type?, latitude?, longitude?)
+- `DELETE /profiles/<id>` - Delete profile by ID
+- `GET /profiles/map` - View interactive navigation map with user locations
 
 Quick start (macOS / zsh)
 

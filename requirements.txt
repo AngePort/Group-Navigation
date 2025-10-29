@@ -2,3 +2,4 @@ Flask==2.3.2
 SQLAlchemy==2.0.20
 pytest==7.4.2
 pytest-flask==1.2.0
+folium==0.20.0

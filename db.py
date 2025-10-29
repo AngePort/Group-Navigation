@@ -25,6 +25,8 @@ def db_init(app):
             email TEXT UNIQUE NOT NULL,
             full_name TEXT,
             vehicle_type TEXT,
+            latitude REAL,
+            longitude REAL,
             created_at TEXT
         )
         """
