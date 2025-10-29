@@ -23,6 +23,7 @@ def db_init(app):
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
             email TEXT UNIQUE NOT NULL,
+            password_hash TEXT,
             full_name TEXT,
             vehicle_type TEXT,
             latitude REAL,
@@ -31,6 +32,11 @@ def db_init(app):
         )
         """
     )
+    # Add password_hash column if it doesn't exist
+    try:
+        cur.execute("ALTER TABLE user_profiles ADD COLUMN password_hash TEXT")
+    except sqlite3.OperationalError:
+        pass  # Column already exists
     conn.commit()
     conn.close()
 

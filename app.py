@@ -7,6 +7,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     # default database path (file under instance/). Tests should override DATABASE when needed.
     app.config.setdefault("DATABASE", "instance/app.db")
+    app.secret_key = 'your-secret-key-here'  # Change this to a random secret in production
 
     if test_config:
         app.config.update(test_config)

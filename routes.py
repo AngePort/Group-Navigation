@@ -4,8 +4,50 @@ from datetime import datetime
 import folium
 from folium import IFrame
 import json
+from flask import session
+from werkzeug.security import generate_password_hash, check_password_hash
 
 profiles_bp = Blueprint("profiles", __name__)
+
+
+@profiles_bp.route("/login", methods=["POST"])
+def login():
+    data = request.get_json() or {}
+    username = data.get("username")
+    password = data.get("password")
+    if not username or not password:
+        return {"error": "username and password required"}, 400
+    
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT id, password_hash FROM user_profiles WHERE username = ?", (username,))
+    row = cur.fetchone()
+    if not row or not check_password_hash(row[1], password):
+        return {"error": "invalid credentials"}, 401
+    
+    session['user_id'] = row[0]
+    return {"message": "logged in", "user_id": row[0]}
+
+
+@profiles_bp.route("/logout", methods=["POST"])
+def logout():
+    session.pop('user_id', None)
+    return {"message": "logged out"}
+
+
+@profiles_bp.route("/me")
+def get_me():
+    user_id = session.get('user_id')
+    if not user_id:
+        return {"error": "not logged in"}, 401
+    
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT * FROM user_profiles WHERE id = ?", (user_id,))
+    row = cur.fetchone()
+    if not row:
+        return {"error": "user not found"}, 404
+    return dict(row)
 
 
 @profiles_bp.route("/", methods=["POST"])
@@ -13,9 +55,10 @@ def create_profile():
     data = request.get_json() or {}
     username = data.get("username")
     email = data.get("email")
+    password = data.get("password")
 
-    if not username or not email:
-        return {"error": "username and email are required"}, 400
+    if not username or not email or not password:
+        return {"error": "username, email, and password are required"}, 400
 
     db = get_db()
     cur = db.cursor()
@@ -27,14 +70,15 @@ def create_profile():
     if cur.fetchone():
         return {"error": "email already exists"}, 400
 
+    password_hash = generate_password_hash(password)
     created_at = datetime.utcnow().isoformat()
     cur.execute(
-        "INSERT INTO user_profiles (username, email, full_name, vehicle_type, latitude, longitude, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        (username, email, data.get("full_name"), data.get("vehicle_type"), data.get("latitude"), data.get("longitude"), created_at),
+        "INSERT INTO user_profiles (username, email, password_hash, full_name, vehicle_type, latitude, longitude, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        (username, email, password_hash, data.get("full_name"), data.get("vehicle_type"), data.get("latitude"), data.get("longitude"), created_at),
     )
     db.commit()
     pid = cur.lastrowid
-    cur.execute("SELECT * FROM user_profiles WHERE id = ?", (pid,))
+    cur.execute("SELECT id, username, email, full_name, vehicle_type, latitude, longitude, created_at FROM user_profiles WHERE id = ?", (pid,))
     row = cur.fetchone()
     return dict(row), 201
 
@@ -89,19 +133,31 @@ def show_map():
     cur.execute("SELECT id, username, full_name, latitude, longitude FROM user_profiles WHERE latitude IS NOT NULL AND longitude IS NOT NULL")
     users = cur.fetchall()
     
+    user_id = session.get('user_id')
+    current_user = None
+    if user_id:
+        for u in users:
+            if u[0] == user_id:
+                current_user = u
+                break
+    
     # Build markers JavaScript
     markers_js = ""
     for user in users:
-        user_id, username, full_name, lat, lng = user
+        uid, username, full_name, lat, lng = user
         name = full_name or username
+        popup_text = f'{name} ({username})'
+        if uid == user_id:
+            popup_text += ' - YOU'
         markers_js += f"""
         L.marker([{lat}, {lng}]).addTo(map)
-            .bindPopup('{name} ({username})')
-            .openPopup();
+            .bindPopup('{popup_text}');
         """
     
-    # Default center: first user or New York
-    if users:
+    # Default center: current user, or first user, or New York
+    if current_user:
+        center_lat, center_lng = current_user[3], current_user[4]
+    elif users:
         center_lat, center_lng = users[0][3], users[0][4]
     else:
         center_lat, center_lng = 40.7128, -74.0060
