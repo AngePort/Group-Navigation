@@ -6,13 +6,38 @@ from folium import IFrame
 import json
 from flask import session
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import redirect
 
 profiles_bp = Blueprint("profiles", __name__)
 
 
-@profiles_bp.route("/login", methods=["POST"])
+@profiles_bp.route("/login", methods=["GET", "POST"])
 def login():
-    data = request.get_json() or {}
+    if request.method == "GET":
+        return """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Login</title>
+        </head>
+        <body>
+            <h1>Login</h1>
+            <form action="/profiles/login" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Login</button>
+            </form>
+        </body>
+        </html>
+        """
+    
+    # POST
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form
     username = data.get("username")
     password = data.get("password")
     if not username or not password:
@@ -26,7 +51,10 @@ def login():
         return {"error": "invalid credentials"}, 401
     
     session['user_id'] = row[0]
-    return {"message": "logged in", "user_id": row[0]}
+    if request.is_json:
+        return {"message": "logged in", "user_id": row[0]}
+    else:
+        return redirect("/profiles/map")
 
 
 @profiles_bp.route("/logout", methods=["POST"])
@@ -105,6 +133,10 @@ def get_profile(profile_id):
 
 @profiles_bp.route("/<int:profile_id>", methods=["PUT"])
 def update_profile(profile_id):
+    user_id = session.get('user_id')
+    if not user_id or user_id != profile_id:
+        return {"error": "unauthorized"}, 403
+    
     db = get_db()
     cur = db.cursor()
     cur.execute("SELECT * FROM user_profiles WHERE id = ?", (profile_id,))
@@ -121,7 +153,7 @@ def update_profile(profile_id):
         (full_name, vehicle_type, latitude, longitude, profile_id),
     )
     db.commit()
-    cur.execute("SELECT * FROM user_profiles WHERE id = ?", (profile_id,))
+    cur.execute("SELECT id, username, email, full_name, vehicle_type, latitude, longitude, created_at FROM user_profiles WHERE id = ?", (profile_id,))
     updated = cur.fetchone()
     return dict(updated)
 
@@ -163,6 +195,13 @@ def show_map():
         center_lat, center_lng = 40.7128, -74.0060
     
     # Simple HTML with Leaflet map
+    logged_in_html = ""
+    if user_id:
+        logged_in_html = f"""
+        <button id="updateLocationBtn">Update My Location</button>
+        <p id="locationStatus"></p>
+        """
+    
     html = f"""
     <!DOCTYPE html>
     <html>
@@ -177,6 +216,7 @@ def show_map():
     <body>
         <h1>Group Navigation Map</h1>
         <p>Showing locations of users with coordinates.</p>
+        {logged_in_html}
         <div id="map"></div>
         <script>
             var map = L.map('map').setView([{center_lat}, {center_lng}], 10);
@@ -184,6 +224,37 @@ def show_map():
                 attribution: '© OpenStreetMap contributors'
             }}).addTo(map);
             {markers_js}
+            
+            // Update location function
+            document.getElementById('updateLocationBtn')?.addEventListener('click', function() {{
+                if (navigator.geolocation) {{
+                    navigator.geolocation.getCurrentPosition(function(position) {{
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        document.getElementById('locationStatus').textContent = 'Updating location...';
+                        
+                        fetch('/profiles/{user_id}', {{
+                            method: 'PUT',
+                            headers: {{
+                                'Content-Type': 'application/json',
+                            }},
+                            body: JSON.stringify({{ latitude: lat, longitude: lng }}),
+                        }})
+                        .then(response => response.json())
+                        .then(data => {{
+                            document.getElementById('locationStatus').textContent = 'Location updated! Refresh the page to see changes.';
+                        }})
+                        .catch(error => {{
+                            document.getElementById('locationStatus').textContent = 'Error updating location.';
+                            console.error('Error:', error);
+                        }});
+                    }}, function(error) {{
+                        document.getElementById('locationStatus').textContent = 'Unable to retrieve your location.';
+                    }});
+                }} else {{
+                    document.getElementById('locationStatus').textContent = 'Geolocation is not supported by this browser.';
+                }}
+            }});
         </script>
     </body>
     </html>

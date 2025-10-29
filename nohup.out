@@ -5,3 +5,47 @@
 [33mPress CTRL+C to quit[0m
 127.0.0.1 - - [28/Oct/2025 19:31:22] "POST /profiles/login HTTP/1.1" 200 -
 127.0.0.1 - - [28/Oct/2025 19:31:26] "GET /profiles/map?id=81039f71-9b27-4599-88eb-7ec7c52708bc&vscodeBrowserReqId=1761715886444 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:33:30] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:33:33] "GET /profiles/map?id=81039f71-9b27-4599-88eb-7ec7c52708bc&vscodeBrowserReqId=1761716013509 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:34:49] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:34:49] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:34:54] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:25] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:26] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:27] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:31] "POST /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:43] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:44] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:44] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:35:53] "[31m[1mGET /profiles/login HTTP/1.1[0m" 405 -
+127.0.0.1 - - [28/Oct/2025 19:36:05] "[31m[1mGET /profiles/login HTTP/1.1[0m" 405 -
+127.0.0.1 - - [28/Oct/2025 19:36:14] "[32mGET /profiles HTTP/1.1[0m" 308 -
+127.0.0.1 - - [28/Oct/2025 19:36:14] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:36:20] "[31m[1mGET /profiles/login HTTP/1.1[0m" 405 -
+127.0.0.1 - - [28/Oct/2025 19:36:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:36:38] "[31m[1mGET /profiles/login HTTP/1.1[0m" 405 -
+127.0.0.1 - - [28/Oct/2025 19:36:51] "[31m[1mGET /profiles/login HTTP/1.1[0m" 405 -
+ * Serving Flask app 'app:create_app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [28/Oct/2025 19:37:04] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:37:18] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:37:29] "[31m[1mPOST /profiles/login HTTP/1.1[0m" 415 -
+127.0.0.1 - - [28/Oct/2025 19:38:01] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:38:11] "[31m[1mPOST /profiles/login HTTP/1.1[0m" 415 -
+127.0.0.1 - - [28/Oct/2025 19:38:25] "[31m[1mPOST /profiles/login HTTP/1.1[0m" 415 -
+127.0.0.1 - - [28/Oct/2025 19:38:34] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:38:39] "[31m[1mPOST /profiles/login HTTP/1.1[0m" 415 -
+ * Serving Flask app 'app:create_app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [28/Oct/2025 19:43:46] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [28/Oct/2025 19:44:14] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [28/Oct/2025 19:44:14] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:44:17] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 19:44:23] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [28/Oct/2025 19:44:23] "GET /profiles/map HTTP/1.1" 200 -
