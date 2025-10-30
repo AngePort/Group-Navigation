@@ -170,3 +170,6 @@ On macOS, try disabling the 'AirPlay Receiver' service from System Preferences -
 127.0.0.1 - - [29/Oct/2025 18:02:55] "GET /profiles/admin HTTP/1.1" 200 -
 127.0.0.1 - - [29/Oct/2025 18:03:00] "GET /profiles/admin/edit/2 HTTP/1.1" 200 -
 127.0.0.1 - - [29/Oct/2025 18:03:02] "GET /profiles/admin HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 18:41:36] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 18:41:40] "GET /profiles/admin HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 18:41:54] "GET /profiles/admin/edit/3 HTTP/1.1" 200 -

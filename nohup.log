@@ -1,0 +1,655 @@
+ * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [29/Oct/2025 19:03:06] "GET /profiles/login?id=81039f71-9b27-4599-88eb-7ec7c52708bc&vscodeBrowserReqId=1761800586057 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:43] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:49] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [29/Oct/2025 19:03:49] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:49] "GET /socket.io/?EIO=4&transport=polling&t=PepW2nT HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:49] "POST /socket.io/?EIO=4&transport=polling&t=PepW2nY&sid=yCG6EoDfRTR-tSZWAAAA HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:49] "GET /socket.io/?EIO=4&transport=polling&t=PepW2nZ&sid=yCG6EoDfRTR-tSZWAAAA HTTP/1.1" 200 -
+Exception in thread Thread-13 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 742, in on_join_tracking
+    sio.emit('user_count', len(connected_users), skip_sid=None, broadcast=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-14 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-15 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-16 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+disconnect handler error
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+TypeError: init_socketio.<locals>.on_disconnect() takes 0 positional arguments but 1 was given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/engineio/server.py", line 450, in run_handler
+    return self.handlers[event](*args)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 674, in _handle_eio_disconnect
+    self._handle_disconnect(eio_sid, n, reason)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 571, in _handle_disconnect
+    self._trigger_event('disconnect', namespace, sid,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        reason or self.reason.CLIENT_DISCONNECT)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 624, in _trigger_event
+    return handler(*args[:-1])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 805, in on_disconnect
+    sio.emit('user_count', len(connected_users), skip_sid=None, broadcast=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/engineio/server.py", line 456, in run_handler
+    return self.handlers[event](args[0])
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+TypeError: Server._handle_eio_disconnect() missing 1 required positional argument: 'reason'
+127.0.0.1 - - [29/Oct/2025 19:03:53] "GET /socket.io/?EIO=4&transport=websocket&sid=yCG6EoDfRTR-tSZWAAAA HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:53] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:53] "GET /socket.io/?EIO=4&transport=polling&t=PepW3pH HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:53] "POST /socket.io/?EIO=4&transport=polling&t=PepW3pL&sid=aesRh8Vsyn0FARz7AAAC HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:53] "GET /socket.io/?EIO=4&transport=polling&t=PepW3pM&sid=aesRh8Vsyn0FARz7AAAC HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:03:53] "GET /socket.io/?EIO=4&transport=polling&t=PepW3pS&sid=aesRh8Vsyn0FARz7AAAC HTTP/1.1" 200 -
+Exception in thread Thread-26 (_handle_event_internal):
+127.0.0.1 - - [29/Oct/2025 19:03:53] "POST /socket.io/?EIO=4&transport=polling&t=PepW3pS.0&sid=aesRh8Vsyn0FARz7AAAC HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 742, in on_join_tracking
+    sio.emit('user_count', len(connected_users), skip_sid=None, broadcast=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-28 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-29 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-30 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-31 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+disconnect handler error
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+TypeError: init_socketio.<locals>.on_disconnect() takes 0 positional arguments but 1 was given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/engineio/server.py", line 450, in run_handler
+    return self.handlers[event](*args)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 674, in _handle_eio_disconnect
+    self._handle_disconnect(eio_sid, n, reason)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 571, in _handle_disconnect
+    self._trigger_event('disconnect', namespace, sid,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        reason or self.reason.CLIENT_DISCONNECT)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 624, in _trigger_event
+    return handler(*args[:-1])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 805, in on_disconnect
+    sio.emit('user_count', len(connected_users), skip_sid=None, broadcast=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/engineio/server.py", line 456, in run_handler
+    return self.handlers[event](args[0])
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+TypeError: Server._handle_eio_disconnect() missing 1 required positional argument: 'reason'
+127.0.0.1 - - [29/Oct/2025 19:04:17] "GET /socket.io/?EIO=4&transport=websocket&sid=aesRh8Vsyn0FARz7AAAC HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:04:20] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:04:25] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [29/Oct/2025 19:04:25] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:04:25] "GET /socket.io/?EIO=4&transport=polling&t=PepWBaf HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:04:25] "POST /socket.io/?EIO=4&transport=polling&t=PepWBar&sid=gj4vodkZUsW1npdEAAAE HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 19:04:25] "GET /socket.io/?EIO=4&transport=polling&t=PepWBas&sid=gj4vodkZUsW1npdEAAAE HTTP/1.1" 200 -
+Exception in thread Thread-42 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 742, in on_join_tracking
+    sio.emit('user_count', len(connected_users), skip_sid=None, broadcast=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-43 (_handle_event_internal):
+Traceback (most recent call last):
+Exception in thread Thread-44 (_handle_event_internal):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-45 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+Exception in thread Thread-46 (_handle_event_internal):
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1081, in _bootstrap_inner
+    self._context.run(self.run)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0/Frameworks/Python.framework/Versions/3.14/lib/python3.14/threading.py", line 1023, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 594, in _handle_event_internal
+    r = server._trigger_event(data[0], namespace, sid, *data[1:])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 778, in on_update_location
+    sio.emit('location_update', {
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        'user_id': user_id,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        'longitude': longitude
+        ^^^^^^^^^^^^^^^^^^^^^^
+    }, skip_sid=None, broadcast=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+disconnect handler error
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 620, in _trigger_event
+    return handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+TypeError: init_socketio.<locals>.on_disconnect() takes 0 positional arguments but 1 was given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/engineio/server.py", line 450, in run_handler
+    return self.handlers[event](*args)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 674, in _handle_eio_disconnect
+    self._handle_disconnect(eio_sid, n, reason)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 571, in _handle_disconnect
+    self._trigger_event('disconnect', namespace, sid,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        reason or self.reason.CLIENT_DISCONNECT)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/socketio/server.py", line 624, in _trigger_event
+    return handler(*args[:-1])
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 292, in _handler
+    return self._handle_event(handler, message, real_ns, sid,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              *args)
+                              ^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 835, in _handle_event
+    ret = handler(*args)
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/routes.py", line 805, in on_disconnect
+    sio.emit('user_count', len(connected_users), skip_sid=None, broadcast=True)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/flask_socketio/__init__.py", line 472, in emit
+    self.server.emit(event, *args, namespace=namespace, to=to,
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                     skip_sid=skip_sid, callback=callback, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Server.emit() got an unexpected keyword argument 'broadcast'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/angeport/Documents/GitHub/Group-Navigation/.venv/lib/python3.14/site-packages/engineio/server.py", line 456, in run_handler
+    return self.handlers[event](args[0])
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+TypeError: Server._handle_eio_disconnect() missing 1 required positional argument: 'reason'
+127.0.0.1 - - [29/Oct/2025 19:04:33] "GET /socket.io/?EIO=4&transport=websocket&sid=gj4vodkZUsW1npdEAAAE HTTP/1.1" 200 -

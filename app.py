@@ -1,6 +1,7 @@
 from flask import Flask
 from db import db_init, close_db
-from routes import profiles_bp
+from routes import profiles_bp, init_socketio
+from flask_socketio import SocketIO
 
 
 def create_app(test_config=None):
@@ -15,9 +16,13 @@ def create_app(test_config=None):
     db_init(app)
     app.register_blueprint(profiles_bp, url_prefix="/profiles")
     app.teardown_appcontext(close_db)
+    
+    # Initialize SocketIO
+    socketio = SocketIO(app, cors_allowed_origins="*")
+    init_socketio(socketio)
 
     @app.route("/")
     def index():
         return {"app": "Driving Navigation (prototype)", "status": "ok"}
 
-    return app
+    return app, socketio
