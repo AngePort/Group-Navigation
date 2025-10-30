@@ -73,3 +73,87 @@
 127.0.0.1 - - [28/Oct/2025 19:47:41] "GET /profiles/login HTTP/1.1" 200 -
 127.0.0.1 - - [28/Oct/2025 19:47:49] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
 127.0.0.1 - - [28/Oct/2025 19:47:49] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:14:46] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:16:17] code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x12\x00\x00\x00-\x00\x02\x01\x01\x00')
+127.0.0.1 - - [28/Oct/2025 20:16:17] "[31m[1m\x16\x03\x01\x07\x00\x01\x00\x06ü\x03\x03ª\x9b\x1a\x1aHDËB±oý\x80\x9bk\x7fK\x9c\x99\x9cûÊöÔÎ\x0b\x08\x8b¼^\x9c­| r¸\x13h;±#\x849ykð~\x1bQÁÅßPYm·:\\`yó ÀÀ.U\x00 ºº\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06\x93êê\x00\x00þ\x0d\x01\x1a\x00\x00\x01\x00\x01\x8a\x00 r\x80\x1føã»`uðÈ¿Jâ¨ðh'ø(\x82\x09Á\x16¬"ò/.\x14\x88y\x0d\x00ð\x1d¥«µ<ÑÜ¼b<ÎÌ\x0bEx¬x\x9dGÈ\x09jeæ<l=\x07ØÅ\x17~ÇÕÊ®±¸\x03%\x9c\x1a\x82 \x00Ç0¢õkçíP\x9d\x9f\x1cÕÞ>\x1b\x80Èåü"¦\x9dBVju\x07ì1Ë·þ\x88b_²zfÂ>\x7fÕ\x8e!\x146\x1f£n§Lb4\x93x'JSã\x8f)¤TRW*\x81\x8bBxÄ>åâ¾")\x9e\x8a\x7f\x02<-À\x17ÿÄ_7\x84Ûÿ¥hU\x12D§?8Ç\x8bâ\x97äc\x0e\x9d\x18\x94$p\x93\x1f\x99\x09í¿±jý2a\x94~\x8b\x8bT\x87¬/\x86úzÞ!·H@ßpvÑÏl²\x8e\x8b\x9f\x17³\x01\x88>\x83\x81Ø\x95¶\x8ea\x18ìYmbd3NR}\x8d^·2y|\x80\\\x15\x17ÿYæÂ­WGo[IF45j\x00\x0d\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00\x12\x00\x00\x00-\x00\x02\x01\x01\x00[0m" 400 -
+127.0.0.1 - - [28/Oct/2025 20:16:17] code 400, message Bad request version ('JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SJJ\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00')
+127.0.0.1 - - [28/Oct/2025 20:16:17] "[31m[1m\x16\x03\x01\x06À\x01\x00\x06¼\x03\x03ËdU\x9aS\x9e¼\x12xl/\x1bè±\x8c¦ýÅº\x86\x8f\x86[\x8ciÎÿÓÓìR\x00 øU\x8d\x08á©V\x18>Z\x18\x92mç\x02Ï\x02\x98k>;\x82±H_\x09\x88¢ÞOÈ\x92\x00 JJ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06SJJ\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00[0m" 400 -
+127.0.0.1 - - [28/Oct/2025 20:16:33] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06')
+127.0.0.1 - - [28/Oct/2025 20:16:33] "[31m[1m\x16\x03\x01\x06 \x01\x00\x06\x9c\x03\x03æÄ\x92ÊÜ\x10[0m" 400 -
+127.0.0.1 - - [28/Oct/2025 20:16:33] code 400, message Bad request version ('\x16\x04E\x86AS\x16.Å')
+127.0.0.1 - - [28/Oct/2025 20:16:33] "[31m[1m\x16\x03\x01\x06à\x01\x00\x06Ü\x03\x03R\x99O~<R*I\x86Ç7à°¨\x088GpH\x1bì$\x88%l\x07\x88)¯¢ÿ> u\x90¾c{è\x0eå\x907ô\x02V\x09ºkgó¥ÁtÐ®_dÕ\x8eV\x1aI¦\x1a\x00 ÊÊ\x13\x01\x13\x02\x13\x03À+À/À,À0Ì©Ì¨À\x13À\x14\x00\x9c\x00\x9d\x00/\x005\x01\x00\x06sjj\x00\x00\x00\x17\x00\x00\x00\x0b\x00\x02\x01\x00\x00\x12\x00\x00DÍ\x00\x05\x00\x03\x02h2\x00\x0d\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00#\x00\x00\x00-\x00\x02\x01\x01\x00\x1b\x00\x03\x02\x00\x02\x003\x04ï\x04íªª\x00\x01\x00\x11ì\x04À×y>F¡>rph¬¦\x15BÐG×[ºkõÏUöO\x95HA\x82ÒÏUÀJ4\x88^Ä\x07À<i\x9a4uº>Ðl]R0A9&²I~V\x8bF°ù\x13Mø7Ò¹¬RÂB\x9dJ\x0d>\x1bnjÜ\x15«Ô\x03fª\x9f,É\x8b§\x80$\x0dTy]\x84\x18Ï{#¨\x04`öEÇK\x078YA|\x97¢­\x800Î ¶\x94U6\x0b\x7f\x147©¸qqF\x19î\x84C×D\x01Jô\x04î÷R\x95\x1b\x95\x00d+|4/Ô\x960\x95åUÆ\x87\x81ê1\x02=õ\x8bnöOçv¶ÇzH\x9bK¸\x0d\x94\x92Å£\x9fsùbÁ\x10\x83:\x90Rä\x9c 5±mE\x84\x7fÛ\x110÷÷x\x1aÊC\x8eÅ=¡\x15ZYÚ\x16k%>\x9fa\x96yÛ§\x8ev\x80sãJO\x13pGÊ[>\x98\x01è\x94K\x1f:hqñ{µS\x19\x17ÔV\x12$º|\x9cc\x11\x91O¼Ó¶N\x14|\x1cÚ\x0bµù±!\x94\x0e\x1db\x99 Á\x8e­Ñ-\x1eâ\x1bcr|7Ø2\x98¡ ÿ\x88ÄwrUÛ¥\x92CB¢¯Êi\x09È­Cæ\x8dÔB\x1b\x943z\x9d\x03\x8c\x81tZwücv\x95j\x1f\x83R\x00=\x86Û\x90]iË»Ñx£\x1eu(\x0d\x03_¡¤|\x1c\x16\x04E\x86AS\x16.Å[0m" 400 -
+127.0.0.1 - - [28/Oct/2025 20:16:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:17:02] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:17:28] "[33mGET /profile HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Oct/2025 20:17:31] "[32mGET /profiles HTTP/1.1[0m" 308 -
+127.0.0.1 - - [28/Oct/2025 20:17:31] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:17:51] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:18:13] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:18:24] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [28/Oct/2025 20:18:24] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:18:29] "PUT /profiles/1 HTTP/1.1" 200 -
+127.0.0.1 - - [28/Oct/2025 20:18:32] "GET /profiles/map HTTP/1.1" 200 -
+ * Serving Flask app 'app:create_app'
+ * Debug mode: off
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+On macOS, try disabling the 'AirPlay Receiver' service from System Preferences -> General -> AirDrop & Handoff.
+ * Serving Flask app 'app:create_app'
+ * Debug mode: off
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+On macOS, try disabling the 'AirPlay Receiver' service from System Preferences -> General -> AirDrop & Handoff.
+ * Serving Flask app 'app:create_app'
+ * Debug mode: off
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+On macOS, try disabling the 'AirPlay Receiver' service from System Preferences -> General -> AirDrop & Handoff.
+127.0.0.1 - - [29/Oct/2025 07:31:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:31:47] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:31:50] "GET /profiles/login HTTP/1.1" 200 -
+ * Serving Flask app 'app:create_app'
+ * Debug mode: off
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+On macOS, try disabling the 'AirPlay Receiver' service from System Preferences -> General -> AirDrop & Handoff.
+127.0.0.1 - - [29/Oct/2025 07:31:59] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:32:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:32:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 07:33:00] "[32mGET /profiles HTTP/1.1[0m" 308 -
+127.0.0.1 - - [29/Oct/2025 07:33:00] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:33:07] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:33:15] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:33:21] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [29/Oct/2025 07:33:21] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:33:26] "PUT /profiles/1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:33:30] "PUT /profiles/1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:33:36] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:34:13] "PUT /profiles/1 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 07:34:14] "PUT /profiles/1 HTTP/1.1" 200 -
+ * Serving Flask app 'app:create_app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [29/Oct/2025 17:51:11] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:51:31] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:51:37] "[32mGET /profiles HTTP/1.1[0m" 308 -
+127.0.0.1 - - [29/Oct/2025 17:51:37] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:51:43] "[33mGET /profiles/Login HTTP/1.1[0m" 404 -
+127.0.0.1 - - [29/Oct/2025 17:51:47] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:51:52] "[31m[1mPOST /profiles/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [29/Oct/2025 17:52:06] "GET /profiles/register HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:52:41] "[32mPOST /profiles/register HTTP/1.1[0m" 302 -
+127.0.0.1 - - [29/Oct/2025 17:52:41] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:52:44] "PUT /profiles/2 HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:52:45] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:52:56] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:53:29] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:53:33] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:53:38] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:53:47] "GET /profiles/login HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:53:52] "[32mPOST /profiles/login HTTP/1.1[0m" 302 -
+127.0.0.1 - - [29/Oct/2025 17:53:52] "GET /profiles/map HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:54:01] "GET /profiles/ HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:54:06] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [29/Oct/2025 17:54:10] "[33mGET /profile HTTP/1.1[0m" 404 -

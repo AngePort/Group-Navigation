@@ -19,16 +19,25 @@ def login():
         <html>
         <head>
             <title>Login</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 50px; }
+                .container { max-width: 400px; }
+                a { color: blue; text-decoration: none; }
+                a:hover { text-decoration: underline; }
+            </style>
         </head>
         <body>
-            <h1>Login</h1>
-            <form action="/profiles/login" method="post">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required><br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br>
-                <button type="submit">Login</button>
-            </form>
+            <div class="container">
+                <h1>Login</h1>
+                <form action="/profiles/login" method="post">
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" required><br><br>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password" required><br><br>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="/profiles/register">Create one here</a></p>
+            </div>
         </body>
         </html>
         """
@@ -61,6 +70,150 @@ def login():
 def logout():
     session.pop('user_id', None)
     return {"message": "logged out"}
+
+
+@profiles_bp.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "GET":
+        return """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Create Account</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 50px; }
+                .container { max-width: 400px; }
+                input { padding: 5px; margin: 5px 0 15px 0; width: 100%; }
+                button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+                button:hover { background-color: #45a049; }
+                .error { color: red; }
+                a { color: blue; text-decoration: none; }
+                a:hover { text-decoration: underline; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Create Account</h1>
+                <form action="/profiles/register" method="post">
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" required><br>
+                    
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required><br>
+                    
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password" required><br>
+                    
+                    <label for="full_name">Full Name (optional):</label><br>
+                    <input type="text" id="full_name" name="full_name"><br>
+                    
+                    <label for="vehicle_type">Vehicle Type (optional):</label><br>
+                    <input type="text" id="vehicle_type" name="vehicle_type" placeholder="e.g., Car, Truck, Motorcycle"><br>
+                    
+                    <button type="submit">Create Account</button>
+                </form>
+                <p>Already have an account? <a href="/profiles/login">Login here</a></p>
+            </div>
+        </body>
+        </html>
+        """
+    
+    # POST - Register new user
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form
+    
+    username = data.get("username")
+    email = data.get("email")
+    password = data.get("password")
+    full_name = data.get("full_name", "")
+    vehicle_type = data.get("vehicle_type", "")
+    
+    # Validation
+    if not username or not email or not password:
+        if request.is_json:
+            return {"error": "username, email, and password are required"}, 400
+        else:
+            return """
+            <!DOCTYPE html>
+            <html>
+            <body>
+                <h1 class="error">Error: username, email, and password are required</h1>
+                <a href="/profiles/register">Go back</a>
+            </body>
+            </html>
+            """, 400
+    
+    db = get_db()
+    cur = db.cursor()
+    
+    # Check if username already exists
+    cur.execute("SELECT id FROM user_profiles WHERE username = ?", (username,))
+    if cur.fetchone():
+        error_msg = "username already exists"
+        if request.is_json:
+            return {"error": error_msg}, 400
+        else:
+            return f"""
+            <!DOCTYPE html>
+            <html>
+            <body>
+                <h1 style="color: red;">{error_msg}</h1>
+                <a href="/profiles/register">Go back</a>
+            </body>
+            </html>
+            """, 400
+    
+    # Check if email already exists
+    cur.execute("SELECT id FROM user_profiles WHERE email = ?", (email,))
+    if cur.fetchone():
+        error_msg = "email already exists"
+        if request.is_json:
+            return {"error": error_msg}, 400
+        else:
+            return f"""
+            <!DOCTYPE html>
+            <html>
+            <body>
+                <h1 style="color: red;">{error_msg}</h1>
+                <a href="/profiles/register">Go back</a>
+            </body>
+            </html>
+            """, 400
+    
+    # Create new user
+    password_hash = generate_password_hash(password)
+    created_at = datetime.utcnow().isoformat()
+    
+    try:
+        cur.execute(
+            "INSERT INTO user_profiles (username, email, password_hash, full_name, vehicle_type, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+            (username, email, password_hash, full_name, vehicle_type, created_at),
+        )
+        db.commit()
+        user_id = cur.lastrowid
+        
+        if request.is_json:
+            return {"message": "account created successfully", "user_id": user_id}, 201
+        else:
+            # Auto-login after registration
+            session['user_id'] = user_id
+            return redirect("/profiles/map")
+    except Exception as e:
+        db.rollback()
+        if request.is_json:
+            return {"error": str(e)}, 500
+        else:
+            return f"""
+            <!DOCTYPE html>
+            <html>
+            <body>
+                <h1 style="color: red;">Error creating account: {str(e)}</h1>
+                <a href="/profiles/register">Go back</a>
+            </body>
+            </html>
+            """, 500
 
 
 @profiles_bp.route("/me")
