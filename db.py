@@ -28,6 +28,7 @@ def db_init(app):
             vehicle_type TEXT,
             latitude REAL,
             longitude REAL,
+            is_admin INTEGER DEFAULT 0,
             created_at TEXT
         )
         """
@@ -35,6 +36,11 @@ def db_init(app):
     # Add password_hash column if it doesn't exist
     try:
         cur.execute("ALTER TABLE user_profiles ADD COLUMN password_hash TEXT")
+    except sqlite3.OperationalError:
+        pass  # Column already exists
+    # Add is_admin column if it doesn't exist
+    try:
+        cur.execute("ALTER TABLE user_profiles ADD COLUMN is_admin INTEGER DEFAULT 0")
     except sqlite3.OperationalError:
         pass  # Column already exists
     conn.commit()

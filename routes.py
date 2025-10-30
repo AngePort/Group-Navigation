@@ -418,3 +418,190 @@ def show_map():
 @profiles_bp.route("/test")
 def test_route():
     return "Test route works!"
+
+
+@profiles_bp.route("/admin")
+def admin_dashboard():
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect("/profiles/login")
+    
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT is_admin FROM user_profiles WHERE id = ?", (user_id,))
+    user = cur.fetchone()
+    if not user or not user[0]:
+        return {"error": "access denied - admin only"}, 403
+    
+    # Get all users
+    cur.execute("SELECT id, username, email, full_name, vehicle_type, latitude, longitude, is_admin, created_at FROM user_profiles ORDER BY created_at DESC")
+    users = cur.fetchall()
+    users_list = [dict(u) for u in users]
+    
+    # Build HTML table
+    users_html = ""
+    for u in users_list:
+        admin_badge = " (ADMIN)" if u['is_admin'] else ""
+        users_html += f"""
+        <tr>
+            <td>{u['id']}</td>
+            <td>{u['username']}{admin_badge}</td>
+            <td>{u['email']}</td>
+            <td>{u['full_name'] or 'N/A'}</td>
+            <td>{u['vehicle_type'] or 'N/A'}</td>
+            <td>
+                <a href="/profiles/admin/edit/{u['id']}">Edit</a> |
+                <a href="/profiles/admin/delete/{u['id']}" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+            </td>
+        </tr>
+        """
+    
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Admin Dashboard</title>
+        <style>
+            body {{ font-family: Arial, sans-serif; margin: 20px; }}
+            table {{ border-collapse: collapse; width: 100%; }}
+            table, th, td {{ border: 1px solid black; padding: 8px; text-align: left; }}
+            th {{ background-color: #4CAF50; color: white; }}
+            tr:nth-child(even) {{ background-color: #f2f2f2; }}
+            a {{ color: blue; text-decoration: none; margin: 0 5px; }}
+            a:hover {{ text-decoration: underline; }}
+            .header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+            <div>
+                <a href="/profiles/map">View Map</a> | 
+                <a href="/profiles/logout" onclick="this.form.submit()">Logout</a>
+            </div>
+        </div>
+        
+        <h2>User Management</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Full Name</th>
+                <th>Vehicle Type</th>
+                <th>Actions</th>
+            </tr>
+            {users_html}
+        </table>
+    </body>
+    </html>
+    """
+
+
+@profiles_bp.route("/admin/edit/<int:profile_id>", methods=["GET", "POST"])
+def admin_edit_user(profile_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect("/profiles/login")
+    
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT is_admin FROM user_profiles WHERE id = ?", (user_id,))
+    user = cur.fetchone()
+    if not user or not user[0]:
+        return {"error": "access denied - admin only"}, 403
+    
+    if request.method == "GET":
+        cur.execute("SELECT id, username, email, full_name, vehicle_type, latitude, longitude, is_admin FROM user_profiles WHERE id = ?", (profile_id,))
+        target_user = cur.fetchone()
+        if not target_user:
+            return {"error": "user not found"}, 404
+        
+        user_data = dict(target_user)
+        return f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Edit User</title>
+            <style>
+                body {{ font-family: Arial, sans-serif; margin: 50px; }}
+                .container {{ max-width: 500px; }}
+                input, textarea {{ width: 100%; padding: 8px; margin: 5px 0 15px 0; box-sizing: border-box; }}
+                button {{ padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }}
+                button:hover {{ background-color: #45a049; }}
+                label {{ display: block; font-weight: bold; margin-top: 10px; }}
+                .checkbox {{ width: auto; }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Edit User: {user_data['username']}</h1>
+                <form action="/profiles/admin/edit/{profile_id}" method="post">
+                    <label>Username:</label>
+                    <input type="text" name="username" value="{user_data['username']}" readonly>
+                    
+                    <label>Email:</label>
+                    <input type="email" name="email" value="{user_data['email']}" required>
+                    
+                    <label>Full Name:</label>
+                    <input type="text" name="full_name" value="{user_data['full_name'] or ''}">
+                    
+                    <label>Vehicle Type:</label>
+                    <input type="text" name="vehicle_type" value="{user_data['vehicle_type'] or ''}">
+                    
+                    <label>Latitude:</label>
+                    <input type="number" name="latitude" step="0.0001" value="{user_data['latitude'] or ''}">
+                    
+                    <label>Longitude:</label>
+                    <input type="number" name="longitude" step="0.0001" value="{user_data['longitude'] or ''}">
+                    
+                    <label>
+                        <input type="checkbox" name="is_admin" class="checkbox" {"checked" if user_data['is_admin'] else ""}>
+                        Admin User
+                    </label><br>
+                    
+                    <button type="submit">Save Changes</button>
+                    <a href="/profiles/admin">Cancel</a>
+                </form>
+            </div>
+        </body>
+        </html>
+        """
+    
+    # POST - Update user
+    data = request.form
+    email = data.get("email")
+    full_name = data.get("full_name", "")
+    vehicle_type = data.get("vehicle_type", "")
+    latitude = data.get("latitude") or None
+    longitude = data.get("longitude") or None
+    is_admin = 1 if data.get("is_admin") else 0
+    
+    cur.execute(
+        "UPDATE user_profiles SET email = ?, full_name = ?, vehicle_type = ?, latitude = ?, longitude = ?, is_admin = ? WHERE id = ?",
+        (email, full_name, vehicle_type, latitude, longitude, is_admin, profile_id),
+    )
+    db.commit()
+    return redirect("/profiles/admin")
+
+
+@profiles_bp.route("/admin/delete/<int:profile_id>", methods=["GET"])
+def admin_delete_user(profile_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        return redirect("/profiles/login")
+    
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT is_admin FROM user_profiles WHERE id = ?", (user_id,))
+    user = cur.fetchone()
+    if not user or not user[0]:
+        return {"error": "access denied - admin only"}, 403
+    
+    # Prevent self-deletion
+    if profile_id == user_id:
+        return {"error": "cannot delete your own account"}, 400
+    
+    cur.execute("DELETE FROM user_profiles WHERE id = ?", (profile_id,))
+    db.commit()
+    return redirect("/profiles/admin")
